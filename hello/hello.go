@@ -8,8 +8,11 @@ import (
 )
 
 func main() {
+	// A slice of names.
+	names := []string{"Gladys", "Samantha", "Darrin"}
+
 	// Request a greeting message.
-	message, err := greetings.Hello("Sang")
+	messages, err := greetings.Hellos(names)
 
 	// If an error was returned, print it to the console and
 	// exit the program.
@@ -20,5 +23,5 @@ func main() {
 
 	// If no error was returned, print the returned message
 	// to the console.
-	fmt.Println(message)
+	fmt.Println(messages)
 }
