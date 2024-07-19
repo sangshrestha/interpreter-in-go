@@ -41,9 +41,9 @@ func (p *Program) TokenLiteral() string {
 }
 
 type LetStatement struct {
-	Token token.Token // the token.LET token
-	Name  *Identifier
 	Value Expression
+	Name  *Identifier
+	Token token.Token // the token.LET token
 }
 
 func (ls *LetStatement) statementNode()       {}
@@ -70,8 +70,8 @@ func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
 func (i *Identifier) String() string       { return i.Value }
 
 type ReturnStatement struct {
-	Token       token.Token // the 'return' token
 	ReturnValue Expression
+	Token       token.Token // the 'return' token
 }
 
 func (rs *ReturnStatement) statementNode()       {}
@@ -87,8 +87,8 @@ func (rs *ReturnStatement) String() string {
 }
 
 type ExpressionStatement struct {
-	Token      token.Token // the first token of the expression
 	Expression Expression
+	Token      token.Token // the first token of the expression
 }
 
 func (es *ExpressionStatement) statementNode()       {}
@@ -110,9 +110,9 @@ func (il *IntegerLiteral) TokenLiteral() string { return il.Token.Literal }
 func (il *IntegerLiteral) String() string       { return il.Token.Literal }
 
 type PrefixExpression struct {
+	Right    Expression
 	Token    token.Token // The prefix token, e.g. !
 	Operator string
-	Right    Expression
 }
 
 func (pe *PrefixExpression) expressionNode()      {}
@@ -129,10 +129,10 @@ func (pe *PrefixExpression) String() string {
 }
 
 type InfixExpression struct {
-	Token    token.Token // The operator token, e.g. +
 	Left     Expression
-	Operator string
 	Right    Expression
+	Token    token.Token // The operator token, e.g. +
+	Operator string
 }
 
 func (oe *InfixExpression) expressionNode()      {}
